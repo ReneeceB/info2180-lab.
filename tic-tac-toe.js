@@ -14,8 +14,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 board[index] = currentPlayer;
                 square.textContent = currentPlayer;
                 square.classList.add(currentPlayer);
-                currentPlayer = (currentPlayer === 'X') ? 'O' : 'X';  // Alternate player
+                currentPlayer = (currentPlayer === 'X') ? 'O' : 'X';  
             }
+        });
+    });
+
+    squares.forEach(square => {
+        square.addEventListener('mouseover', function() {
+            square.classList.add('hover');
+        });
+        square.addEventListener('mouseout', function() {
+            square.classList.remove('hover');
         });
     });
 });
