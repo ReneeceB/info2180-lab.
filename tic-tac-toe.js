@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 board[index] = currentPlayer;
                 square.textContent = currentPlayer;
                 square.classList.add(currentPlayer);
-                checkWinner();  // Check for winner after each move
-                currentPlayer = (currentPlayer === 'X') ? 'O' : 'X';  // Alternate player
+                checkWinner();  
+                currentPlayer = (currentPlayer === 'X') ? 'O' : 'X';  
             }
         });
     });
@@ -45,4 +45,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
+
+    document.querySelector('.btn').addEventListener('click', function() {
+        board.fill(null);
+        currentPlayer = 'X';
+        squares.forEach(square => {
+            square.textContent = '';
+            square.className = 'square';  // Reset class
+        });
+        document.getElementById('status').textContent = 'Move your mouse over a square and click to play an X or an O.';
+        document.getElementById('status').classList.remove('you-won');
+    });
 });
