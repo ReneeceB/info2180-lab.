@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 board[index] = currentPlayer;
                 square.textContent = currentPlayer;
                 square.classList.add(currentPlayer);
-                currentPlayer = (currentPlayer === 'X') ? 'O' : 'X';  
+                checkWinner();  // Check for winner after each move
+                currentPlayer = (currentPlayer === 'X') ? 'O' : 'X';  // Alternate player
             }
         });
     });
@@ -27,4 +28,21 @@ document.addEventListener('DOMContentLoaded', function() {
             square.classList.remove('hover');
         });
     });
+
+    function checkWinner() {
+        const winningCombinations = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
+        ];
+        
+        for (let combination of winningCombinations) {
+            const [a, b, c] = combination;
+            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                document.getElementById('status').textContent = `Congratulations! ${board[a]} is the Winner!`;
+                document.getElementById('status').classList.add('you-won');
+                break;
+            }
+        }
+    }
 });
